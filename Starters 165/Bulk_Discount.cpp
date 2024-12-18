@@ -1,3 +1,8 @@
+#ifndef ONLINE_JUDGE
+#include "debugger.h"
+#else
+#define dbg(...)
+#endif
 #include <bits/stdc++.h>
 #define int long long
 #define ll long long
@@ -15,42 +20,22 @@ using namespace std;
 const int mod = 1e9 + 7;
 void solve()
 {
-    int n, l, r;
-    cin >> n >> l >> r;
-    vector<int> a(n);
-    set<int> s;
+    int n;
+    cin >> n;
+    int a[n];
     for (int i = 0; i < n; i++)
     {
         cin >> a[i];
-        s.insert(a[i]);
     }
-    if (s.size() < n)
-    {
-        if (l == 0)
-        {
-            yes;
-            return;
-        }
-        no;
-        return;
-    }
-    int mul = 1;
+    sort(a, a + n);
+    int count = 0;
+    int ans = 0;
     for (int i = 0; i < n; i++)
     {
-        for (int j = i + 1; j < n; j++)
-        {
-            mul *= (a[i] ^ a[j]);
-            if (mul > r)
-            {
-                no;
-                return;
-            }
-        }
+        ans += max(0LL, a[i] - count);
+        count++;
     }
-    if (mul >= l && mul <= r)
-        yes;
-    else
-        no;
+    cout << ans << "\n";
 }
 
 int32_t main()
