@@ -2,7 +2,7 @@
 using namespace std;
 
 struct DSU {
-   vector<int> par, rnk, siz, mini, maxi;
+   vector<int> par, rnk, siz;
    int c;
    DSU(int n) :par(n + 1, -1), rnk(n + 1, 0), siz(n + 1, 1), c(n) {
       for (int i = 1;i <= n;i++) {
